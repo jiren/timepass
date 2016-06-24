@@ -1,0 +1,16 @@
+
+# Ignore all logfiles and tempfiles.
+/tmp
+/extra
+.DS_Store*
+._*
+*.diff
+*.swp
+/docs
+1.js
+
+# npm
+node_modules
+*.log
+*.gz
+npm-debug.log
