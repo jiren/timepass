@@ -7,13 +7,32 @@ var TestApp = new Timepass();
 class Users extends Timepass.BaseController{
 
   index(){
-    this.render('Users: This is index page.')
+    this.render('Users: This is INDEX page.')
   }
 
   show(){
-    this.render(`Users: This is show page for User  ${this.params.id}`)
+    this.render(`Users: This is SHOW page for User  ${this.params.id}`)
   }
 
+  new(){
+    this.render('Users: This is NEW page.')
+  }
+
+  create(){
+    this.render('Users: This is CREATE page.')
+  }
+
+  edit(){
+    this.render(`Users: This is EDIT page. ${this.params.id}`)
+  }
+
+  update(){
+    this.render(`Users: This is UPDATE page. ${this.params.id}`)
+  }
+
+  destroy(){
+    this.render('Users: This is DESTROY page.')
+  }
 }
 
 class Orders extends Timepass.BaseController{
@@ -35,5 +54,3 @@ TestApp.defineRoutes(function(){
 
 
 TestApp.start()
-
-

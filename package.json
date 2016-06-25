@@ -7,7 +7,9 @@
     "webframework",
     "api",
     "restapi",
-    "rest"
+    "rest",
+    "node6",
+    "es6"
   ],
   "author": "Jiren Patel",
   "license": "MIT",
@@ -20,9 +22,10 @@
     "start": "nodemon test/app.js"
   },
   "dependencies": {
-    "debug": "~2.2.0"
+    "qs": "6.2.0"
   },
   "devDependencies": {
+    "debug": "~2.2.0",
     "mocha": "2.5.3",
     "should": "9.0.2",
     "nodemon": ">= 1.9.2"
