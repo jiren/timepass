@@ -19,10 +19,15 @@
   },
   "scripts": {
     "test": "node test/app.js",
-    "start": "nodemon test/app.js"
+    "start": "nodemon test/app.js",
+    "prof": "NODE_ENV=production node --prof test/app.js"
   },
   "dependencies": {
-    "qs": "6.2.0"
+    "qs": "6.2.0",
+    "body-parser": "~1.15.2",
+    "content-type": "~1.0.2",
+    "accepts": "~1.3.3",
+    "type-is": "~1.6.12"
   },
   "devDependencies": {
     "debug": "~2.2.0",
