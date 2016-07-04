@@ -3,13 +3,14 @@ var Timepass = require('..');
 
 var TestApp = new Timepass();
 
-class Users extends Timepass.BaseController{
+class Users extends Timepass.Controller{
 
   index(){
     this.render('Users: This is INDEX page.')
   }
 
   show(){
+    console.log(this.params)
     this.render(`Users: This is SHOW page for User  ${this.params.id}`)
   }
 
@@ -34,14 +35,18 @@ class Users extends Timepass.BaseController{
   }
 }
 
-class Orders extends Timepass.BaseController{
+class Orders extends Timepass.Controller{
 
   index(){
     this.render('Orders: This is index page.')
   }
+
+  edit(){
+    this.render(`Users Order: This is EDIT page. ${this.params.id}`)
+  }
 }
 
-class Home extends Timepass.BaseController{
+class Home extends Timepass.Controller{
   index(){
     this.render("This is Root Page");
   }
@@ -51,16 +56,34 @@ class Home extends Timepass.BaseController{
   }
 }
 
-TestApp.defineRoutes(function(){
-  //this.get('/orders', Orders, 'index')
-  this.root(Home, 'index')
-  this.get('/dashboard', Home, 'dashboard');
-  this.resource(Users);
+class Address extends Timepass.Controller{
+}
 
-  //this.resource(Users, { id: 'user_id', only: ['new', 'create']})
-  //this.resource(Users, { id: 'user_id', except: ['new', 'create']})
-  console.log(this);
+TestApp.defineRoutes(function(r){
+  //this.get('/orders', Orders, 'index')
+  r.root(Home, 'index')
+  r.get('/dashboard', Home, 'dashboard');
+
+  //r.resource(Users).resource(Orders).resource(Home).resource(Address, { only: ['index'] })
+  //r.resource(Users).resource(Orders, (order) => {
+  //  order.member.get('status')
+  //  order.collection.get('zipcode')
+  //})
+
+  r.resource(Users).resource(Orders)
+
+  r.resource(Address, (address) => {
+      address.member.get('street')
+      address.collection.get('zipcode', 'postalcode')
+   })
+
+  //r.resource(Users, { id: 'user_id', only: ['new', 'create']})
+  //r.resource(Users, { id: 'user_id', except: ['new', 'create']}).resource(Orders)
 })
 
+//TestApp.defineRoutes('/admin', function(r){
+//  r.resource(Users).resource(Orders)
+//})
+console.log(TestApp.router.toString());
 
 TestApp.start()
