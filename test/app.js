@@ -1,10 +1,12 @@
 
 var Timepass = require('..');
-
+var TestMiddleware = require('./test_middleware')
 var TestApp = new Timepass();
 
-class Users extends Timepass.Controller{
+TestApp.middleware.use(TestMiddleware)
 
+class Users extends Timepass.Controller{
+  
   index(){
     this.render('Users: This is INDEX page.')
   }
@@ -33,7 +35,30 @@ class Users extends Timepass.Controller{
   destroy(){
     this.render('Users: This is DESTROY page.')
   }
+
+  auth(next){
+    if(this.params.action == 'show'){
+      return this.render('Auth fail', { status: 401 } )
+    }
+
+    console.log('Auth is done')
+    next()
+  }
+
+  find_user(next){
+    console.log('find_user', this.params)
+    next()
+  }
+
+  find_users(next){
+    console.log('find_users', this.params)
+    next()
+  }
 }
+
+Users.beforeAction('auth')
+Users.beforeAction('find_user', {  except: ['new', 'index', 'create'] } )
+     .beforeAction('find_users', { only: ['index'] } )
 
 class Orders extends Timepass.Controller{
 
@@ -45,6 +70,8 @@ class Orders extends Timepass.Controller{
     this.render(`Users Order: This is EDIT page. ${this.params.id}`)
   }
 }
+
+console.log(Orders.beforeActions)
 
 class Home extends Timepass.Controller{
   index(){
