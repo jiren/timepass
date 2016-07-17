@@ -13,6 +13,11 @@
   ],
   "author": "Jiren Patel <jirenpatel@gmail.com>",
   "license": "MIT",
+  "homepage": "http://github.com/jiren/timepass",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jiren/timepass.git"
+  },
   "main": "index.js",
   "engines": {
     "node": ">= 6.0.0"
