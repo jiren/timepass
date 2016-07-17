@@ -1,5 +1,5 @@
 
-var Timepass = require('timepass');
+var Timepass = require('Timepass');
 var TestApp = new Timepass();
 
 class Users extends Timepass.Controller{

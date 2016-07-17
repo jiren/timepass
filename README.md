@@ -8,7 +8,7 @@ It is a Node.js 6(ES6) web framework (Work in progress)
 `npm install timepass`
 
 ```javascript
-const Timepass = require('.')
+const Timepass = require('Timepass')
 const App = new Timepass() // new Timepass({"port": 5000})
 
 class UsersController extends Timepass.Controller{
